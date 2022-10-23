@@ -14,7 +14,7 @@ The code is organized as follows:
 ```markdown
 ├── datasets
    └── event-plan		# expeirment group name
-       ├── `roc-stories`        # a publicly availabl dataset: ROCStories
+       ├── `roc-stories`        # a publicly available dataset: ROCStories
    └── thu-coai-hint		# Testing HINT model will need it
 ├── preprocessing      # the code about automatical event extraction and event planning
 ├── resources      # resources for raw data, vanilla pretrained checkpoint, and so on.
@@ -22,7 +22,7 @@ The code is organized as follows:
    └── configuration	# read the name, and you will know what it is for.
    └── models	
    └── modules	
-   └── utiles	
+   └── utils	
 ├── tasks      # the code to control experiments
    └── event-plan 	# our proposed method to do event planning
    └── generation_models 	# for most of the experiments of event planning and story generation
@@ -57,31 +57,18 @@ Unzip it at the base directory.
 If you intend to preprocess the data by yourself, please read following instructions. Otherwise, please skip to the next section.
 
 #### 2.1 Datasets
-
-The **raw dataset** of roc story can be accessed for free. Google and get it. e.g. [homepage](https://cs.rochester.edu/nlp/rocstories/) .
-
-train, val, test are split by the ratio of 0.90, 0.05, 0.05
-
-the example of `test.source.txt` (leading context):
-
-`ken was driving around in the snow .`
-
-the example of `test.target.txt` (story):
-
-`he needed to get home from work . he was driving slowly to avoid accidents . unfortunately the roads were too slick and ken lost control . his tires lost traction and he hit a tree . `
-
 **It is worth mentioning that:** In the given dataset, we also include the planned eventplan from **Neural Advisor**
  and **NGEP**. Their names are "xxx_bart_event.xxx.txt" -- **Neural Advisor**; "xxx_predicted_event.xxx.txt" -- **NGEP**.
 E.g., "test_bart_event.source.txt" means the event plan of **Neural Advisor** for the test dataset.
 
 **Preprocess**
-Put your downloaded raw dataset to `resources/raw_data`, so that you will have `resources/raw_data/100KStories.csv`.
+Put your downloaded raw dataset (we downloaded it from [HINT](https://github.com/thu-coai/HINT)) to `resources/raw_data`, so that you will have `resources/raw_data/100KStories.csv`.
 
-Run `preprocessing/raw_roc_stories_helper.py`, and then `preprocessing/event_extractor.py`, and you will have `datasets/event-plan/roc-stories`.
+Run `preprocessing/raw_roc_stories_helper.py`, and then `preprocessing/event_extractor.py`, and you will have `resources/datasets/event-plan/roc-stories`.
 
 In addition, if you want to run HINT as a story generation model for experiments. You need to download HINT dataset from [HINT](https://github.com/thu-coai/HINT).
 
-Similarly, put it to `resources/raw_data`, and run `preprocessing/hint_roc_stories_helper.py`. (if my memory serves me right.) You will have `datasets/thu-coai-hint/roc-stories`.
+Similarly, put it to `resources/raw_data`, and run `preprocessing/hint_roc_stories_helper.py`. (if my memory serves me right.) You will have `resources/datasets/thu-coai-hint/roc-stories`.
 
 #### 2.2 Resources
 
