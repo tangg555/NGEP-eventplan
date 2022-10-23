@@ -25,8 +25,8 @@ BASE_DIR = FILE_PATH.parent.parent.parent
 sys.path.insert(0, str(BASE_DIR))  # run code in any path
 
 from src.configuration.event_plan.config_args import parse_args_for_config
-from preprocessing.generation_models.event_extractor import EventExtractor
-from preprocessing.generation_models.event_ontology import Event, EventGraph
+from preprocessing.event_plan.event_extractor import EventExtractor
+from preprocessing.event_plan.event_ontology import Event, EventGraph
 
 from case_test import EventPlanCaseTester
 

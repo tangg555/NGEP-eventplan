@@ -10,7 +10,7 @@ import pandas as pd
 from collections import Counter
 
 from src.configuration.constants import BASE_DIR
-from preprocessing.generation_models.event_predictor import EventPredictor
+from preprocessing.event_plan.event_predictor import EventPredictor
 
 
 class EventAnalyzer(object):

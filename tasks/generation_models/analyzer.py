@@ -14,7 +14,7 @@ BASE_DIR = FILE_PATH.parent.parent.parent
 sys.path.insert(0, str(BASE_DIR))  # run code in any path
 
 from src.utils.generation_models.stat_utils import parse_files, parse_event_graphs
-from preprocessing.generation_models.event_predictor import EventPredictor
+from preprocessing.event_plan.event_predictor import EventPredictor
 from src.utils.generation_models.event_analyzer_utils import EventAnalyzer
 
 
@@ -95,7 +95,7 @@ def clean_hint_gen_file(gen_file):
         print(f"prev_lines:{len(pre_lines)}, new_lines:{len(new_lines)}")
 
 if __name__ == '__main__':
-    from preprocessing.generation_models.event_extractor import EventExtractor  # cannot be removed
+    from preprocessing.event_plan.event_extractor import EventExtractor  # cannot be removed
 
     # for etrica ===============
     discard_dir_key_words = ["gpt", "Seq2seq"]

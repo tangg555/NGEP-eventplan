@@ -25,14 +25,14 @@ from src.configuration.pl_argsparser import (
     process_parsed_args_for_pl_trainer,
 )
 
-EXPERIMENT_GROUP = "event-trigger"
-MODEL_NAME = "leading-t5"
+EXPERIMENT_GROUP = "event-plan"
+MODEL_NAME = "leading-bart"
 OUTPUT_DIR = f'{BASE_DIR}/output/{EXPERIMENT_GROUP}'
 DATASETS_DIR = f'{BASE_DIR}/datasets/{EXPERIMENT_GROUP}'
 RESOURCES_DIR = f'{BASE_DIR}/resources'
 DATA_NAME = "roc-stories"
 TEST_EVENT_INFIX = "_event"
-MODEL_NAME_OR_PATH = f'{RESOURCES_DIR}/external_models/t5-base'
+MODEL_NAME_OR_PATH = f'{RESOURCES_DIR}/external_models/bart-base'
 
 def add_customized_args(parser: argparse.ArgumentParser = None):
     if parser is None:

@@ -13,7 +13,7 @@ FILE_PATH = Path(__file__).absolute()
 BASE_DIR = FILE_PATH.parent.parent.parent
 sys.path.insert(0, str(BASE_DIR))  # run code in any path
 
-from preprocessing.generation_models.hint_roc_stories_helper import write_to_corpus
+from preprocessing.event_plan.hint_roc_stories_helper import write_to_corpus
 
 
 def target_clean(tgt_file, out_file):

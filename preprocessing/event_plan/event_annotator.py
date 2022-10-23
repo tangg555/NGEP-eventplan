@@ -15,7 +15,7 @@ FILE_PATH = Path(__file__).absolute()
 BASE_DIR = FILE_PATH.parent.parent.parent
 sys.path.insert(0, str(BASE_DIR))  # run code in any path
 
-from preprocessing.generation_models.event_extractor import EventExtractor
+from preprocessing.event_plan.event_extractor import EventExtractor
 
 
 class EventAnnotator(EventExtractor):

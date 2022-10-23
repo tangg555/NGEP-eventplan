@@ -36,9 +36,9 @@ FILE_PATH = Path(__file__).absolute()
 BASE_DIR = FILE_PATH.parent.parent.parent
 sys.path.insert(0, str(BASE_DIR))  # run code in any path
 
-from preprocessing.generation_models.dependency_parser import get_dependencies, show_dependencies
-from preprocessing.generation_models.ner import get_named_entites
-from preprocessing.generation_models.event_ontology import Event, EventGraph
+from preprocessing.event_plan.dependency_parser import get_dependencies, show_dependencies
+from preprocessing.event_plan.ner import get_named_entites
+from preprocessing.event_plan.event_ontology import Event, EventGraph
 from src.utils.file_utils import pickle_save, pickle_load
 
 

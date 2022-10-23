@@ -31,7 +31,7 @@ import torch
 
 from torch.utils.data import Dataset
 from src.modules.datasets_base import BaseDataset
-from preprocessing.generation_models.event_ontology import EventGraph
+from preprocessing.event_plan.event_ontology import EventGraph
 from src.utils.string_utils import rm_extra_spaces
 
 class EventPlanDataset(Dataset):

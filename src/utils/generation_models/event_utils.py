@@ -10,8 +10,8 @@ from pathlib import Path
 from collections import Counter
 from typing import List
 
-from preprocessing.generation_models.event_ontology import EventGraph
-from preprocessing.generation_models.event_extractor import EventExtractor
+from preprocessing.event_plan.event_ontology import EventGraph
+from preprocessing.event_plan.event_extractor import EventExtractor
 
 def line_to_event_list(line: str):
     clean_line = line.replace(EventGraph.event_s, "").replace(EventGraph.event_e, "").strip()

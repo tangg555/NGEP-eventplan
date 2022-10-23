@@ -18,7 +18,7 @@ sys.path.insert(0, str(BASE_DIR))  # run code in any path
 
 from src.utils import nlg_eval_utils
 from src.utils.generation_models.stat_utils import parse_files, parse_event_graphs
-from preprocessing.generation_models.event_ontology import EventGraph
+from preprocessing.event_plan.event_ontology import EventGraph
 from src.utils.generation_models.event_analyzer_utils import EventAnalyzer
 from src.utils.string_utils import rm_extra_spaces
 

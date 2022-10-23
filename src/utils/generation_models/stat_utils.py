@@ -13,7 +13,7 @@ from typing import List
 
 from src.configuration.constants import BASE_DIR
 from src.utils.generation_models.event_utils import line_to_event_list
-from preprocessing.generation_models.event_extractor import EventExtractor
+from preprocessing.event_plan.event_extractor import EventExtractor
 
 
 def data_size(file: str):
