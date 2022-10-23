@@ -50,8 +50,8 @@ python -r requirements.txt
 
 #### 2. Collect Datasets and Resources
 `datasets` and `resources` are separate from the code, since they are too large. 
-Both of them can be downloaded from [BaiduNetDisk](https://pan.baidu.com/s/1gLxOZI0t65l4a6cTns8U2w) (input code: gb1a) or [Dropbox](https://www.dropbox.com/s/p9a4lz0eqax55it/datasets_and_resources.zip?dl=0). 
-Put them to the basedir after downloaded.
+Both of them can be downloaded from [Dropbox](https://www.dropbox.com/s/3uh7oylu9joqw9i/datasets_and_resources.zip?dl=0). 
+Unzip int at the base directory.
 
 If you intend to preprocess the data by yourself, please read following instructions. Otherwise, please skip to the next section.
 #####2.1 Datasets
@@ -66,6 +66,20 @@ the example of `test.source.txt` (leading context):
 the example of `test.target.txt` (story):
 
 `he needed to get home from work . he was driving slowly to avoid accidents . unfortunately the roads were too slick and ken lost control . his tires lost traction and he hit a tree . `
+
+**It is worth mention that:** In the given dataset, we also include the planned eventplan from **Neural Advisor**
+ and **NGEP**. Their names are "xxx_bart_event.xxx.txt" -- **Neural Advisor**; "xxx_predicted_event.xxx.txt" -- **NGEP**.
+E.g., "test_bart_event.source.txt" means the event plan of **Neural Advisor** for test dataset.
+
+**Preprocess**
+Put your downloaded raw dataset to `resources/raw_data`, so that you will have `resources/raw_data/100KStories.csv`.
+
+Run `preprocessing/raw_roc_stories_helper.py` -> `preprocessing/event_extractor.py`, and you will have `datasets/event-plan/roc-stories`.
+
+In addition, if you want to run HINT as a story generation model for experiments. You need to download HINT dataset from [HINT](https://github.com/thu-coai/HINT).
+
+Similarly, put it to `resources/raw_data`, and run `preprocessing/hint_roc_stories_helper.py`. (if my memory serves me right.) You will have `datasets/thu-coai-hint/roc-stories`.
+
 #####2.1 Resources
 The structure of resources should be like this:
 ```markdown
@@ -76,26 +90,43 @@ The structure of resources should be like this:
 The huggingface pretrained models (e.g. `bart-base`) can be downloaded from [here](https://huggingface.co/facebook/bart-base). Or you can directly set `--model_name_or_path=facebook/bart-base`, the code will download it for you.
 
 #### 3. Run the code for training or testing
-For training, the code entry is
-`./tasks/xxx/train.py`; For testing, the code entry is `./tasks/xxx/test.py`
 
-**Or** 
+#####3.1 Introduction
+Experiments include two parts: (1) event planning aims to input **leading context** and output **event plan**;
+(2) story generation aims to input **leading+eventplan** and out **stories**.
 
-If you want to modify parameters, you can run
+The project is big, so please read the codes in `tasks` to understand how it works.
+
+**If you don't care the baselines and experiments**, please only read following files:
+- (1) `tasks/event-plan/train.py` to get the model for **Neural Advisor** (I named it `event-plan-bart`).
+- (2) `tasks/event-plan/predict.py` to use **Neural Advisor** and event graph for event planning (**NGEP**).
+
+In case you don't want to train **Neural Advisor** by yourself, a checkpoint ([Dropbox](https://www.dropbox.com/s/l8duhtvlwzd6nz7/event-plan-bart-roc-stories.tar.gz?dl=0)) is released for your convenience. 
+Put it somewhere and restore it with a command. (referring to `eventplan_commands.sh`)
+
+#####3.2  commands for NGEP
+
+The user parameters settings are located in `src/configuration/event_plan/config_args.py` and 
+`src/configuration/generation_models/config_args.py`.
+
+For training **Neural Advisor**:
 ```shell
-python tasks/story-generation/train.py --data_dir=datasets/story-generation/roc-stories\
- --learning_rate=5e-5 \
- --train_batch_size=16 \
- --eval_batch_size=10 \
- --model_name_or_path=resources/external_models/bart-base \
- --output_dir=output/story-generation \
- --model_name leading-bart \
- --experiment_name=leading-bart-roc-stories\
- --val_check_interval=1.0 \
- --limit_val_batches=10 \
- --max_epochs=3 \
- --accum_batches_args=4
+python tasks/event-plan/train.py --data_dir=datasets/event-plan/roc-stories\
+ --learning_rate=1e-4 --train_batch_size=256 --eval_batch_size=10 --model_name_or_path=resources/external_models/bart-base \
+ --output_dir=output/event-plan --model_name event-plan-bart --experiment_name=event-plan-bart-roc-stories\
+ --val_check_interval=1.0 --limit_val_batches=10 --max_epochs=3 --accum_batches_args=1 --num_sanity_val_steps=0
 ```
+
+For event plan with **NGEP**:
+```shell
+python tasks/event-plan/predict.py
+```
+
+#####3.3 All of the commands
+
+We conduct a range of experiments to validate the effectiveness of our model, 
+so it has plenty of commands. Please refer to the file `eventplan_commands.sh` 
+to select the command you want to execute.
 
 ## Notation
 Some notes for this project.
