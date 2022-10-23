@@ -15,26 +15,25 @@ The code is organized as follows:
 ├── datasets
    └── event-plan		# expeirment group name
        ├── `roc-stories`        # a publicly availabl dataset: ROCStories
-       ├── `verb-roc-stories`        # make it for testing but not used in the paper.
-   └── thu-coai-hint		# HINT model needs it
+   └── thu-coai-hint		# Testing HINT model will need it
 ├── preprocessing      # the code about automatical event extraction and event planning
 ├── resources      # resources for raw data, vanilla pretrained checkpoint, and so on.
 ├── src      # all the source code related to the models is put here
-   └── configuration	# read the name, and you can understand what it is for.
+   └── configuration	# read the name, and you will know what it is for.
    └── models	
    └── modules	
    └── utiles	
 ├── tasks      # the code to control experiments
-   └── event-plan 	# our special way (the proposed method) to do event planning
+   └── event-plan 	# our proposed method to do event planning
    └── generation_models 	# for most of the experiments of event planning and story generation
 ```
 If there is something you could not understand, please try to find the explanation in [my paper](https://arxiv.org/pdf/2210.10602.pdf).
 
 If you are a freshman in NLG area and feel hard to read the code, I prepared a story generation demo for you ([demo](https://github.com/tangg555/story-generation-demo)). 
-Because I believe the best code should be readable even without the code comments, I usually tried my best to design the data structure instead of writings code comments.
+I usually tried my best to design the data structure instead of writings code comments, because I believe a good code should be readable even without the code comments.
 
 ## Prerequisites
-If you want to run this code, you must have at least meet the following requirement:
+If you want to run this code, you have to at least satisfy the following requirement:
 - Python 3 or Anaconda (mine is v3.8)
 - [Pytorch](https://pytorch.org/) (mine is v1.11.0)
 - transformers (a package for [huggingface](https://huggingface.co/facebook/bart-base)) v4.19.4
@@ -44,17 +43,21 @@ If you want to run this code, you must have at least meet the following requirem
 ## Quick Start
 
 #### 1. Install packages
+Install the aforementioned prerequisites, and run
 ```shell
 python -r requirements.txt
 ```
 
 #### 2. Collect Datasets and Resources
-`datasets` and `resources` are separate from the code, since they are too large. 
+
+`datasets` and `resources` are not included in the code, since their sizes are too large. 
 Both of them can be downloaded from [Dropbox](https://www.dropbox.com/s/3uh7oylu9joqw9i/datasets_and_resources.zip?dl=0). 
-Unzip int at the base directory.
+Unzip it at the base directory.
 
 If you intend to preprocess the data by yourself, please read following instructions. Otherwise, please skip to the next section.
-#####2.1 Datasets
+
+##### 2.1 Datasets
+
 The **raw dataset** of roc story can be accessed for free. Google and get it. e.g. [homepage](https://cs.rochester.edu/nlp/rocstories/) .
 
 train, val, test are split by the ratio of 0.90, 0.05, 0.05
@@ -67,20 +70,21 @@ the example of `test.target.txt` (story):
 
 `he needed to get home from work . he was driving slowly to avoid accidents . unfortunately the roads were too slick and ken lost control . his tires lost traction and he hit a tree . `
 
-**It is worth mention that:** In the given dataset, we also include the planned eventplan from **Neural Advisor**
+**It is worth mentioning that:** In the given dataset, we also include the planned eventplan from **Neural Advisor**
  and **NGEP**. Their names are "xxx_bart_event.xxx.txt" -- **Neural Advisor**; "xxx_predicted_event.xxx.txt" -- **NGEP**.
-E.g., "test_bart_event.source.txt" means the event plan of **Neural Advisor** for test dataset.
+E.g., "test_bart_event.source.txt" means the event plan of **Neural Advisor** for the test dataset.
 
 **Preprocess**
 Put your downloaded raw dataset to `resources/raw_data`, so that you will have `resources/raw_data/100KStories.csv`.
 
-Run `preprocessing/raw_roc_stories_helper.py` -> `preprocessing/event_extractor.py`, and you will have `datasets/event-plan/roc-stories`.
+Run `preprocessing/raw_roc_stories_helper.py`, and then `preprocessing/event_extractor.py`, and you will have `datasets/event-plan/roc-stories`.
 
 In addition, if you want to run HINT as a story generation model for experiments. You need to download HINT dataset from [HINT](https://github.com/thu-coai/HINT).
 
 Similarly, put it to `resources/raw_data`, and run `preprocessing/hint_roc_stories_helper.py`. (if my memory serves me right.) You will have `datasets/thu-coai-hint/roc-stories`.
 
-#####2.1 Resources
+##### 2.1 Resources
+
 The structure of resources should be like this:
 ```markdown
 ├── resources
@@ -91,7 +95,8 @@ The huggingface pretrained models (e.g. `bart-base`) can be downloaded from [her
 
 #### 3. Run the code for training or testing
 
-#####3.1 Introduction
+##### 3.1 Introduction
+
 Experiments include two parts: (1) event planning aims to input **leading context** and output **event plan**;
 (2) story generation aims to input **leading+eventplan** and out **stories**.
 
@@ -104,7 +109,7 @@ The project is big, so please read the codes in `tasks` to understand how it wor
 In case you don't want to train **Neural Advisor** by yourself, a checkpoint ([Dropbox](https://www.dropbox.com/s/l8duhtvlwzd6nz7/event-plan-bart-roc-stories.tar.gz?dl=0)) is released for your convenience. 
 Put it somewhere and restore it with a command. (referring to `eventplan_commands.sh`)
 
-#####3.2  commands for NGEP
+##### 3.2  commands for NGEP
 
 The user parameters settings are located in `src/configuration/event_plan/config_args.py` and 
 `src/configuration/generation_models/config_args.py`.
@@ -122,7 +127,7 @@ For event plan with **NGEP**:
 python tasks/event-plan/predict.py
 ```
 
-#####3.3 All of the commands
+##### 3.3 All of the commands
 
 We conduct a range of experiments to validate the effectiveness of our model, 
 so it has plenty of commands. Please refer to the file `eventplan_commands.sh` 
@@ -141,7 +146,7 @@ I wrote two scripts to download models from huggingface website.
 One is `tasks/download_hf_models.sh`, and another is `src/utils/huggingface_helper.py`
 
 ## Citation
-If you found this repository or paper is helpful for you, please cite our paper. It is accepted by AACL 2022, but currently the citations of AACL papers have not come out yet.
+If you found this repository or paper is helpful to you, please cite our paper. It is accepted by AACL 2022, but currently the citations of AACL papers have not come out yet.
 
 This is the arxiv citation:
 ```angular2
