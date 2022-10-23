@@ -42,13 +42,13 @@ If you want to run this code, you have to at least satisfy the following require
 
 ## Quick Start
 
-#### 1. Install packages
+### 1. Install packages
 Install the aforementioned prerequisites, and run
 ```shell
 python -r requirements.txt
 ```
 
-#### 2. Collect Datasets and Resources
+### 2. Collect Datasets and Resources
 
 `datasets` and `resources` are not included in the code, since their sizes are too large. 
 Both of them can be downloaded from [Dropbox](https://www.dropbox.com/s/3uh7oylu9joqw9i/datasets_and_resources.zip?dl=0). 
@@ -56,7 +56,7 @@ Unzip it at the base directory.
 
 If you intend to preprocess the data by yourself, please read following instructions. Otherwise, please skip to the next section.
 
-##### 2.1 Datasets
+#### 2.1 Datasets
 
 The **raw dataset** of roc story can be accessed for free. Google and get it. e.g. [homepage](https://cs.rochester.edu/nlp/rocstories/) .
 
@@ -83,7 +83,7 @@ In addition, if you want to run HINT as a story generation model for experiments
 
 Similarly, put it to `resources/raw_data`, and run `preprocessing/hint_roc_stories_helper.py`. (if my memory serves me right.) You will have `datasets/thu-coai-hint/roc-stories`.
 
-##### 2.1 Resources
+#### 2.2 Resources
 
 The structure of resources should be like this:
 ```markdown
@@ -93,9 +93,9 @@ The structure of resources should be like this:
 ```
 The huggingface pretrained models (e.g. `bart-base`) can be downloaded from [here](https://huggingface.co/facebook/bart-base). Or you can directly set `--model_name_or_path=facebook/bart-base`, the code will download it for you.
 
-#### 3. Run the code for training or testing
+### 3. Run the code for training or testing
 
-##### 3.1 Introduction
+#### 3.1 Introduction
 
 Experiments include two parts: (1) event planning aims to input **leading context** and output **event plan**;
 (2) story generation aims to input **leading+eventplan** and out **stories**.
@@ -109,7 +109,7 @@ The project is big, so please read the codes in `tasks` to understand how it wor
 In case you don't want to train **Neural Advisor** by yourself, a checkpoint ([Dropbox](https://www.dropbox.com/s/l8duhtvlwzd6nz7/event-plan-bart-roc-stories.tar.gz?dl=0)) is released for your convenience. 
 Put it somewhere and restore it with a command. (referring to `eventplan_commands.sh`)
 
-##### 3.2  commands for NGEP
+#### 3.2  commands for NGEP
 
 The user parameters settings are located in `src/configuration/event_plan/config_args.py` and 
 `src/configuration/generation_models/config_args.py`.
@@ -127,7 +127,7 @@ For event plan with **NGEP**:
 python tasks/event-plan/predict.py
 ```
 
-##### 3.3 All of the commands
+#### 3.3 All of the commands
 
 We conduct a range of experiments to validate the effectiveness of our model, 
 so it has plenty of commands. Please refer to the file `eventplan_commands.sh` 
@@ -135,13 +135,13 @@ to select the command you want to execute.
 
 ## Notation
 Some notes for this project.
-#### 1 - Additional directories and files in this project
+### 1 - Additional directories and files in this project
 ```markdown
 ├── output  # this will be automatically created to put all the output stuff including checkpoints and generated text
 ├── .gitignore # used by git
 ├── requirement.txt # the checklist of essential python packages 
 ```
-#### 2 - Scripts for Downloading huggingface models
+### 2 - Scripts for Downloading huggingface models
 I wrote two scripts to download models from huggingface website.
 One is `tasks/download_hf_models.sh`, and another is `src/utils/huggingface_helper.py`
 
