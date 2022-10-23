@@ -62,13 +62,11 @@ If you intend to preprocess the data by yourself, please read following instruct
 E.g., "test_bart_event.source.txt" means the event plan of **Neural Advisor** for the test dataset.
 
 **Preprocess**
-Put your downloaded raw dataset (we downloaded it from [HINT](https://github.com/thu-coai/HINT)) to `resources/raw_data`, so that you will have `resources/raw_data/100KStories.csv`.
+Put your downloaded raw dataset (we downloaded it from [HINT](https://github.com/thu-coai/HINT)) to `resources/raw_data`, so that you will have `resources/raw_data/thu-coai-hint/roc-stories`.
 
-Run `preprocessing/raw_roc_stories_helper.py`, and then `preprocessing/event_extractor.py`, and you will have `resources/datasets/event-plan/roc-stories`.
+Run `preprocessing/hint_roc_stories_helper.py`, and then `preprocessing/event_annotator.py`, and you will have `resources/datasets/event-plan/roc-stories`.
 
-In addition, if you want to run HINT as a story generation model for experiments. You need to download HINT dataset from [HINT](https://github.com/thu-coai/HINT).
-
-Similarly, put it to `resources/raw_data`, and run `preprocessing/hint_roc_stories_helper.py`. (if my memory serves me right.) You will have `resources/datasets/thu-coai-hint/roc-stories`.
+Similarly, if you want to run HINT as a story generation model for experiments, you need to download HINT dataset from [HINT](https://github.com/thu-coai/HINT), and make it to be `/datasets/thu-coai-hint/roc-stories`.
 
 #### 2.2 Resources
 
