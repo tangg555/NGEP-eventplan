@@ -45,7 +45,7 @@ If you want to run this code, you have to at least satisfy the following require
 ### 1. Install packages
 Install the aforementioned prerequisites, and run
 ```shell
-python -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 2. Collect Datasets and Resources
@@ -62,6 +62,7 @@ If you intend to preprocess the data by yourself, please read following instruct
 E.g., "test_bart_event.source.txt" means the event plan of **Neural Advisor** for the test dataset.
 
 **Preprocess**
+
 Put your downloaded raw dataset (we downloaded it from [HINT](https://github.com/thu-coai/HINT)) to `resources/raw_data`, so that you will have `resources/raw_data/thu-coai-hint/roc-stories`.
 
 Run `preprocessing/hint_roc_stories_helper.py`, and then `preprocessing/event_annotator.py`, and you will have `resources/datasets/event-plan/roc-stories`.
