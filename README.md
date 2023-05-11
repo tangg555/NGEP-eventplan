@@ -132,7 +132,7 @@ I wrote two scripts to download models from huggingface website.
 One is `tasks/download_hf_models.sh`, and another is `src/utils/huggingface_helper.py`
 
 ## Citation
-If you found this repository or paper is helpful to you, please cite our paper. It is accepted by AACL 2022, but currently the citations of AACL papers have not come out yet.
+If you found this repository or paper is helpful to you, please cite our paper. 
 
 This is the arxiv citation:
 ```angular2
@@ -144,3 +144,22 @@ This is the arxiv citation:
 }
 ```
 
+This is the AACL citation:
+```angular2
+@inproceedings{tang-etal-2022-ngep,
+    title = "{NGEP}: A Graph-based Event Planning Framework for Story Generation",
+    author = "Tang, Chen  and
+      Zhang, Zhihao  and
+      Loakman, Tyler  and
+      Lin, Chenghua  and
+      Guerin, Frank",
+    booktitle = "Proceedings of the 2nd Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics and the 12th International Joint Conference on Natural Language Processing (Volume 2: Short Papers)",
+    month = nov,
+    year = "2022",
+    address = "Online only",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.aacl-short.24",
+    pages = "186--193",
+    abstract = "To improve the performance of long text generation, recent studies have leveraged automatically planned event structures (i.e. storylines) to guide story generation. Such prior works mostly employ end-to-end neural generation models to predict event sequences for a story. However, such generation models struggle to guarantee the narrative coherence of separate events due to the hallucination problem, and additionally the generated event sequences are often hard to control due to the end-to-end nature of the models. To address these challenges, we propose NGEP, an novel event planning framework which generates an event sequence by performing inference on an automatically constructed event graph and enhances generalisation ability through a neural event advisor. We conduct a range of experiments on multiple criteria, and the results demonstrate that our graph-based neural framework outperforms the state-of-the-art (SOTA) event planning approaches, considering both the performance of event sequence generation and the effectiveness on the downstream task of story generation.",
+}
+```
